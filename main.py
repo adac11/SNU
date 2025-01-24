@@ -1,4 +1,4 @@
-Import koreanize_matplotlib
+import koreanize_matplotlib
 import streamlit as st
 import pandas as pd
 import seaborn as sns
