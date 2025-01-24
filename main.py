@@ -4,9 +4,14 @@ import seaborn as sns
 import matplotlib.pyplot as plt
 from scipy.stats import ttest_ind
 from matplotlib import rc
+from matplotlib import font_manager
 
-# 한글 폰트 설정 (기본 폰트로 설정)
-rc('font', family='Malgun Gothic')  # 윈도우 환경 기본 폰트
+# 한글 폰트 설정 (자동 폰트 설정)
+try:
+    font_path = font_manager.findfont(font_manager.FontProperties(family="NanumGothic"))
+    rc('font', family='NanumGothic')
+except:
+    st.warning("한글 폰트를 찾을 수 없어 기본 설정으로 진행합니다.")
 plt.rcParams['axes.unicode_minus'] = False  # 마이너스 기호 깨짐 방지
 
 # Streamlit 앱 제목
