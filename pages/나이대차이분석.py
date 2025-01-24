@@ -6,7 +6,7 @@ import matplotlib.pyplot as plt
 from scipy.stats import chi2_contingency
 
 # Streamlit 앱 제목
-st.title("나이대별 스캔방향별 움직임 분석")
+st.title("나이대별 스캔방향별 움직임 분석 (2x2 카이제곱)")
 
 # 데이터 로드
 @st.cache_data
@@ -35,11 +35,11 @@ for age_group in age_groups:
     chi2_results = []
     for direction in scan_directions:
         contingency_table = pd.crosstab(age_group_data[age_group_data['스캔방향'] == direction]['움직임_전체'],
-                                        age_group_data[age_group_data['스캔방향'] == direction]['나이대'])
-        if contingency_table.shape == (2, 1):  # 데이터가 부족하면 카이제곱 불가능
-            chi2, p = None, None
-        else:
+                                        age_group_data[age_group_data['스캔방향'] == direction]['스캔방향'])
+        if contingency_table.shape == (2, 2):  # 2x2 교차표 확인
             chi2, p, _, _ = chi2_contingency(contingency_table)
+        else:  # 데이터가 부족하면 분석 생략
+            chi2, p = None, None
         chi2_results.append({'스캔방향': direction, '카이제곱 통계량': chi2, 'p-value': p})
     
     # 결과 테이블 표시
@@ -65,4 +65,5 @@ for age_group in age_groups:
     ax.set_ylabel('평균 움직임')
     ax.set_xlabel('스캔방향')
     st.pyplot(fig)
+
 
