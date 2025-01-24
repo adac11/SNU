@@ -3,12 +3,11 @@ import pandas as pd
 import seaborn as sns
 import matplotlib.pyplot as plt
 from scipy.stats import ttest_ind
-from matplotlib import font_manager, rc
+from matplotlib import rc
 
-# 한글 폰트 설정
-font_path = '/usr/share/fonts/truetype/nanum/NanumGothic.ttf'
-font_name = font_manager.FontProperties(fname=font_path).get_name()
-rc('font', family=font_name)
+# 한글 폰트 설정 (기본 폰트로 설정)
+rc('font', family='Malgun Gothic')  # 윈도우 환경 기본 폰트
+plt.rcParams['axes.unicode_minus'] = False  # 마이너스 기호 깨짐 방지
 
 # Streamlit 앱 제목
 st.title("성별에 따른 스캔방향별 움직임 분석")
