@@ -3,6 +3,12 @@ import pandas as pd
 import seaborn as sns
 import matplotlib.pyplot as plt
 from scipy.stats import ttest_ind
+from matplotlib import font_manager, rc
+
+# 한글 폰트 설정
+font_path = '/usr/share/fonts/truetype/nanum/NanumGothic.ttf'
+font_name = font_manager.FontProperties(fname=font_path).get_name()
+rc('font', family=font_name)
 
 # Streamlit 앱 제목
 st.title("성별에 따른 스캔방향별 움직임 분석")
