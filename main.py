@@ -9,7 +9,7 @@ st.title("성별에 따른 스캔방향별 움직임 분석")
 # 데이터 로드
 @st.cache_data
 def load_data():
-    return pd.read_csv('Ch1-환자 움직임_최종.csv')
+    return pd.read_csv('Ch1-환자 움직임_최종.csv', encoding='cp949')
 
 data = load_data()
 
@@ -36,4 +36,3 @@ st.pyplot(fig)
 st.header("추가 데이터 설명")
 with st.expander("데이터의 주요 특징"):
     st.markdown("- **성별**: M(남성), F(여성)\n- **스캔방향**: 스캔이 수행된 방향\n- **움직임_전체**: 움직임이 발생한 경우 1, 그렇지 않으면 0")
-
